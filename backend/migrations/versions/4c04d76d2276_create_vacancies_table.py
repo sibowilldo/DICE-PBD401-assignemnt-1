@@ -10,7 +10,6 @@ from datetime import datetime
 from alembic import op
 import sqlalchemy as sa
 
-from models.vacancy import table_name
 
 # revision identifiers, used by Alembic.
 revision = '47bd3fb2a311'
@@ -21,7 +20,7 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        table_name,
+        'vacancies',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('user_id', sa.Integer),
         sa.Column('category_id', sa.Integer),
@@ -44,4 +43,4 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table(table_name)
+    op.drop_table('vacancies')

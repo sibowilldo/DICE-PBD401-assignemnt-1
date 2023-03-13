@@ -10,8 +10,6 @@ from datetime import datetime
 from alembic import op
 import sqlalchemy as sa
 
-from models.application import table_name
-
 # revision identifiers, used by Alembic.
 revision = '4c9c15c3a33d'
 down_revision = '47bd3fb2a311'
@@ -21,7 +19,7 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        table_name,
+        'applications',
         sa.Column('id', sa.Integer, primary_key=True),
         sa.Column('user_id', sa.Integer),
         sa.Column('status_id', sa.Integer),
@@ -38,4 +36,4 @@ def upgrade():
 
 
 def downgrade():
-    op.drop_table(table_name)
+    op.drop_table('applications')
