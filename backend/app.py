@@ -6,7 +6,7 @@ from flask_cors import CORS
 from werkzeug.exceptions import Forbidden, Unauthorized, BadRequest
 
 from auth.auth import AuthError, requires_auth
-from database.models import Vacancy, setup_db, Status
+from database.models import Vacancy, setup_db, Status, Category, Type
 
 load_dotenv('.env')
 
@@ -17,10 +17,6 @@ setup_db(app)
 CORS(app, resources={r"/api/*": {"origins": "*"}})
 
 api_route = os.getenv("API_URL", "/api/v1")
-
-'''
- ================= Statuses =====================
-'''
 
 
 @app.route(f"{api_route}/home", methods=['GET'])
@@ -34,6 +30,25 @@ def home():
         return jsonify({
             "success": False,
         }), 500
+
+
+@app.route(f"{api_route}/profile", methods=['GET'])
+@requires_auth('read:profile.own')
+def profile():
+    try:
+        vacancies = Vacancy.query.all()
+        vacancies = list(map(lambda vacancy: vacancy.short(), vacancies))
+        return jsonify({"vacancies": vacancies}), 200
+    except Exception as ex:
+        print(ex)
+        return jsonify({
+            "success": False,
+        }), 500
+
+
+'''
+ ================= Statuses =====================
+'''
 
 
 @app.route(f"{api_route}/statuses", methods=['GET'])
@@ -71,7 +86,7 @@ def status_store(payload):
         raise AuthError
 
 
-@app.route(f"{api_route}/statuses/<int:statuses_id>", methods=['GET'])
+@app.route(f"{api_route}/statuses/<int:status_id>", methods=['GET'])
 @requires_auth('read:status.view')
 def status_show(payload, status_id):
     try:
@@ -86,7 +101,7 @@ def status_show(payload, status_id):
         raise AuthError
 
 
-@app.route(f"{api_route}/statuses/<int:statuses_id>", methods=['PUT'])
+@app.route(f"{api_route}/statuses/<int:status_id>", methods=['PUT'])
 @requires_auth('put:status.update')
 def status_update(payload, status_id):
     try:
@@ -107,15 +122,187 @@ def status_update(payload, status_id):
         raise AuthError
 
 
-@app.route(f"{api_route}/statuses/<int:statuses_id>", methods=['DELETE'])
+@app.route(f"{api_route}/statuses/<int:status_id>", methods=['DELETE'])
 @requires_auth('delete:status.destroy')
-def status_destroy(payload, vacancy_id):
+def status_destroy(payload, status_id):
     try:
-        vacancy = Vacancy.query.filter(Vacancy.id == vacancy_id).first_or_404()
-        vacancy.delete()
+        status = Status.query.filter(Status.id == status_id).first_or_404()
+        status.delete()
         return jsonify({
             "success": True,
-            "delete": vacancy_id
+            "delete": status_id
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+'''
+ ================= Category =====================
+'''
+
+
+@app.route(f"{api_route}/categories", methods=['GET'])
+def statuses_index():
+    try:
+        categories = Category.query.all()
+        categories = list(map(lambda category: category.long(), categories))
+        return jsonify({"categories": categories}), 200
+    except Exception as ex:
+        print(ex)
+        return jsonify({
+            "success": False,
+        }), 500
+
+
+@app.route(f"{api_route}/categories", methods=['POST'])
+@requires_auth('post:category.store')
+def status_store(payload):
+    try:
+        req = request.get_json()
+        category = Category()
+
+        category.model_type = req.get("name", "")
+        category.description = req.get("description", "")
+
+        category.insert()
+        return jsonify({
+            "success": True,
+            "message": "Your category was saved!",
+            "category": category.long()
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/categories/<int:category_id>", methods=['GET'])
+@requires_auth('read:category.view')
+def status_show(payload, category_id):
+    try:
+        category = Category.query.filter(Category.id == category_id).first_or_404()
+
+        category.update()
+        return jsonify({
+            "success": True,
+            "category": category.long()
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/categories/<int:category_id>", methods=['PUT'])
+@requires_auth('put:category.update')
+def status_update(payload, category_id):
+    try:
+        req = request.get_json()
+        category = Category.query.filter(Category.id == category_id).first_or_404()
+
+        category.name = req.get("name")
+        category.description = req.get("description")
+
+        category.update()
+        return jsonify({
+            "success": True,
+            "category": category
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/categories/<int:category_id>", methods=['DELETE'])
+@requires_auth('delete:category.destroy')
+def status_destroy(payload, category_id):
+    try:
+        category = Category.query.filter(Category.id == category_id).first_or_404()
+        category.delete()
+        return jsonify({
+            "success": True,
+            "delete": category_id
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+'''
+ ================= Type =====================
+'''
+
+
+@app.route(f"{api_route}/types", methods=['GET'])
+def statuses_index():
+    try:
+        types = Type.query.all()
+        types = list(map(lambda vacancy_type: vacancy_type.long(), types))
+        return jsonify({"types": types}), 200
+    except Exception as ex:
+        print(ex)
+        return jsonify({
+            "success": False,
+        }), 500
+
+
+@app.route(f"{api_route}/types", methods=['POST'])
+@requires_auth('post:vacancy_type.store')
+def status_store(payload):
+    try:
+        req = request.get_json()
+        vacancy_type = Type()
+
+        vacancy_type.model_type = req.get("name", "")
+        vacancy_type.description = req.get("description", "")
+
+        vacancy_type.insert()
+        return jsonify({
+            "success": True,
+            "message": "Your vacancy_type was saved!",
+            "vacancy_type": vacancy_type.long()
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/types/<int:type_id>", methods=['GET'])
+@requires_auth('read:vacancy_type.view')
+def status_show(payload, type_id):
+    try:
+        vacancy_type = Type.query.filter(Type.id == type_id).first_or_404()
+
+        vacancy_type.update()
+        return jsonify({
+            "success": True,
+            "vacancy_type": vacancy_type.long()
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/types/<int:type_id>", methods=['PUT'])
+@requires_auth('put:vacancy_type.update')
+def status_update(payload, type_id):
+    try:
+        req = request.get_json()
+        vacancy_type = Type.query.filter(Type.id == type_id).first_or_404()
+
+        vacancy_type.name = req.get("name")
+        vacancy_type.description = req.get("description")
+
+        vacancy_type.update()
+        return jsonify({
+            "success": True,
+            "vacancy_type": vacancy_type
+        }), 200
+    except Forbidden or Unauthorized or BadRequest:
+        raise AuthError
+
+
+@app.route(f"{api_route}/types/<int:type_id>", methods=['DELETE'])
+@requires_auth('delete:vacancy_type.destroy')
+def status_destroy(payload, type_id):
+    try:
+        vacancy_type = Type.query.filter(Type.id == type_id).first_or_404()
+        vacancy_type.delete()
+        return jsonify({
+            "success": True,
+            "delete": type_id
         }), 200
     except Forbidden or Unauthorized or BadRequest:
         raise AuthError
