@@ -1,11 +1,11 @@
-alembic
-Flask
+alembic~=1.10.2
+Flask~=2.2.3
 Flask-Cors
 Flask-SQLAlchemy
 Jinja2
 MarkupSafe
-SQLAlchemy
-Werkzeug
+SQLAlchemy~=2.0.5.post1
+Werkzeug~=2.2.3
 astroid
 click
 dill
@@ -14,7 +14,7 @@ future
 greenlet
 isort
 itsdangerous
-jose
+jose~=1.0.0
 lazy-object-proxy
 mccabe
 pip
@@ -22,7 +22,7 @@ platformdirs
 pycodestyle
 pycryptodome==3.17
 pylint
-python-dotenv
+python-dotenv~=1.0.0
 python-jose
 python-jose-cryptodome
 setuptools
