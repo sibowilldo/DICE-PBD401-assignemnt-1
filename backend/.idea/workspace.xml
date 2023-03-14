@@ -5,30 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96681176-1696-482c-9dd1-f5cc4a0479ee" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/database/mixins.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/backend.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/backend.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/47bd3fb2a311_create_users_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/47bd3fb2a311_create_users_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/4c04d76d2276_create_vacancies_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/4c04d76d2276_create_vacancies_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/4c9c15c3a33d_create_table_applications.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/4c9c15c3a33d_create_table_applications.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/7d1df5103632_create_statuses_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/7d1df5103632_create_statuses_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/93cb8569643f_create_types_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/93cb8569643f_create_types_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/9c9b78c3a31d_create_table_profiles.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/9c9b78c3a31d_create_table_profiles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/bd40321fa721_create_categories_table.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/bd40321fa721_create_categories_table.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/migrations/versions/e68fcea4200f_create_table_attachments.py" beforeDir="false" afterPath="$PROJECT_DIR$/migrations/versions/e68fcea4200f_create_table_attachments.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/application.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/attachment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/catogory.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/mixins.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/profile.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/status.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/type.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/user.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/vacancy.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -137,7 +115,8 @@
       <workItem from="1678637544294" duration="993000" />
       <workItem from="1678638588063" duration="16765000" />
       <workItem from="1678702346518" duration="421000" />
-      <workItem from="1678722586795" duration="14220000" />
+      <workItem from="1678722586795" duration="14501000" />
+      <workItem from="1678791597483" duration="2013000" />
     </task>
     <servers />
   </component>
