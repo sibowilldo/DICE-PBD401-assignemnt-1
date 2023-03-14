@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.DS_Store
+backend/.idea/backend.iml
+backend/.idea/inspectionProfiles/profiles_settings.xml
+backend/.idea/vcs.xml
+backend/.idea/workspace.xml
+.idea/DICE-PBD401-assignemnt-1.iml
+.idea/modules.xml
+.idea/vcs.xml
+backend/.idea/workspace.xml
+backend/.idea/workspace.xml
+backend/.idea/workspace.xml
