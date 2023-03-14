@@ -44,7 +44,7 @@ Rename `.env.example` to `.env`
 ```bash
 cp .env.example .env
 ```
-The necessary configuration for running the Flask App should already be set, `FLASK_APP=src/api.py` and `FLASK_DEBUG=True`
+The necessary configuration for running the Flask App should already be set, `FLASK_APP=src/app.py` and `FLASK_DEBUG=True`
 
 To run the server, execute:
 
