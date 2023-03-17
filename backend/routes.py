@@ -1,8 +1,8 @@
 from flask import Blueprint, jsonify, render_template, request, flash, redirect, url_for
-from .database.models import Vacancy, Status, Category, Type, User, Profile, Application, Attachment
-from . import db
+from database.models import Vacancy, Status, Category, Type, User, Profile, Application, Attachment
+from app import db
 from flask_login import login_required, current_user
-from .services.forms import VacancyForm, CategoryForm, TypeForm, StatusForm
+from services.forms import VacancyForm, CategoryForm, TypeForm, StatusForm
 
 main = Blueprint('routes', __name__)
 

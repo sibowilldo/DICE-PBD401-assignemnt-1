@@ -1,7 +1,7 @@
 from flask_wtf import Form, CSRFProtect
 from wtforms import StringField, TextAreaField, DateField, SelectField, HiddenField
 from wtforms.validators import DataRequired, AnyOf, URL
-from ...database.models import Type, Category
+from database.models import Type, Category
 
 
 def category_choices():
