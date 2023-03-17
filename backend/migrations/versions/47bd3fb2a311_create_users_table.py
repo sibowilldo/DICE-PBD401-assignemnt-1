@@ -21,7 +21,9 @@ def upgrade():
     op.create_table(
         'users',
         sa.Column('id', sa.Integer, primary_key=True),
-        sa.Column('email', sa.Text),
+        sa.Column('email', sa.Text, nullable=False),
+        sa.Column('password', sa.Text, nullable=False),
+        sa.Column('is_active', sa.Boolean, default=False),
         sa.Column('created_at', sa.DateTime(), default=datetime.now()),
         sa.Column('updated_at', sa.DateTime(), nullable=True),
         sa.Column('status_id', sa.Integer),
