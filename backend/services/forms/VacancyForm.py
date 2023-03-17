@@ -9,7 +9,6 @@ def category_choices():
 
 
 def type_choices():
-
     return map(lambda type: (type.id, type.name), Type.query.all())
 
 
