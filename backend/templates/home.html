@@ -1,0 +1,191 @@
+{% extends "layouts/layout.html" %}
+
+{%block page_header%}
+
+<h2>Welcome!</h2>
+
+<p class="mt-1 text-sm text-gray-500 dark:text-gray-300">
+    Here are the list of available vacancies.
+ </p>
+{% endblock %}
+
+{% block content %}
+
+<div class="w-full">
+    <div class="max-w-6xl flex flex-col justify-center">
+        <ul class="space-5">
+
+            {% for vacancy in vacancies %}
+            <li>
+                <div
+                    class="dark:bg-gray-800 bg-white shadow-sm border-dashed border-gray-200 dark:border-gray-700 border p-5 rounded-2xl space-y-2 mb-10"
+                >
+                    <div class="space-y-3">
+                        <h2>
+                            <a
+                                aria-current="page"
+                                href="/vacancies#"
+                                class="router-link-active router-link-exact-active dark:text-white text-gray-800 text-2xl decoration decoration-1 hover:decoration-dotted"
+                                >{{ vacancy.title }} #{{ vacancy.id }}</a
+                            >
+                        </h2>
+                        <ul class="flex gap-3">
+                            <!--v-if-->
+                            <li
+                                class="border-gray-300 bg-red-100 text-gray-800 py-1 px-2 text-xs rounded"
+                            >
+                                By {{ vacancy.user.profile.composed_name }}
+                            </li>
+                            <li
+                                class="border-gray-300 bg-red-100 text-gray-800 py-1 px-2 text-xs rounded"
+                            >
+                                {{ vacancy.department }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="text-xs text-gray-600 dark:text-gray-400">
+                        {{ vacancy.description |safe|truncate(150, False, '...', 0) }}
+                    </div>
+                    <div>
+                        <ul class="flex gap-5">
+                            <li
+                                class="text-xs flex items-center gap-1 font-bold dark:text-gray-300"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                    class="h-4 w-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M2.25 12.75V12A2.25 2.25 0 014.5 9.75h15A2.25 2.25 0 0121.75 12v.75m-8.69-6.44l-2.12-2.12a1.5 1.5 0 00-1.061-.44H4.5A2.25 2.25 0 002.25 6v12a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9a2.25 2.25 0 00-2.25-2.25h-5.379a1.5 1.5 0 01-1.06-.44z"
+                                    ></path>
+                                </svg>
+                                {{ vacancy.category.name }}
+                            </li>
+                            <li
+                                class="flex items-center gap-1 font-bold dark:text-gray-300 text-xs"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                    class="h-4 w-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+                                    ></path>
+                                </svg>
+                                {{ vacancy.type.name }}
+                            </li>
+                            <li
+                                class="flex items-center gap-1 font-bold dark:text-gray-300 text-xs"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    aria-hidden="true"
+                                    class="h-4 w-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"
+                                    ></path>
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"
+                                    ></path>
+                                </svg>
+                                {{ vacancy.location }}
+                            </li>
+                        </ul>
+                    </div>
+                    <!--v-if-->
+                    <div class="flex justify-between items-center">
+                        <ul class="flex font-mono text-xs gap-5">
+                            <li
+                                v-if="props.vacancy.created_at"
+                                class="flex gap-1 dark:text-blue-300"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-4 h-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z"
+                                    />
+                                </svg>
+
+                                {{ vacancy.created_at.strftime('%Y-%m-%d') }}
+                            </li>
+                            <li class="expires flex gap-1 dark:text-blue-300">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke-width="1.5"
+                                    stroke="currentColor"
+                                    class="w-4 h-4"
+                                >
+                                    <path
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z"
+                                    />
+                                </svg>
+
+                                <span title="{{ vacancy.expires_at }}">
+                                    {{ vacancy.expires_at.strftime('%Y-%m-%d')
+                                    }}
+                                </span>
+                            </li>
+                        </ul>
+                        <div class="flex gap-5">
+                            <form method="post" action="{{ url_for('routes.vacancies_apply', vacancy_id=vacancy.id)}}">
+                                <input
+                                type="hidden"
+                                name="csrf_token"
+                                value="{{ csrf_token() }}"
+                            />
+                            <button type="submit"
+                                class="text-blue-50 px-4 py-2 bg-blue-500 rounded text-xs uppercase shadow-blue shadow-md hover:shadow"
+                                type="button"
+                            >
+                                Apply
+                            </button>
+                        </form>
+                            <a
+                                class="show-more btnLoaderTrigger px-4 py-2 rounded text-xs uppercase bg-gray-100"
+                                >Show More</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

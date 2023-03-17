@@ -25,6 +25,7 @@ def upgrade():
         sa.Column('given_name', sa.String, nullable=True),
         sa.Column('family_name', sa.String, nullable=True),
         sa.Column('name', sa.String, nullable=True),
+        sa.Column('picture', sa.String, nullable=True, default=None),
         sa.Column('created_at', sa.DateTime(), default=datetime.now()),
         sa.Column('updated_at', sa.DateTime(), nullable=True),
 
