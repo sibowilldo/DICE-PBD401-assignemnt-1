@@ -6,7 +6,7 @@ from dotenv import load_dotenv
 from flask import jsonify
 from flask_login import UserMixin
 
-from .. import db
+from app import db
 
 from .mixins import HasTimestamps, json
 

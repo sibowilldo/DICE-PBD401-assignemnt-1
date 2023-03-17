@@ -1,7 +1,6 @@
 from flask_wtf import Form, CSRFProtect
 from wtforms import StringField, EmailField, PasswordField
 from wtforms.validators import DataRequired, AnyOf, URL
-from ...database.models import User
 
 
 class RegisterForm(Form):
