@@ -1,10 +1,18 @@
+<script setup>
+import AuthLayout from '@/Layouts/AuthLayout.vue'
+</script>
+
+
 <template>
-    <div class="border-1 border-gray-50 border rounded-sm shadow-xl w-full">
-        <section>
-            <slot />
-        </section>
-        <footer class="bg-gray-50 flex justify-end p-5">
-            <slot name="footer" />
-        </footer>
+  <AuthLayout>
+    <div
+        class="bg-white shadow-md border border-gray-200 rounded-lg max-w-sm p-4 sm:p-6 lg:p-8 dark:bg-gray-800 dark:border-gray-700">
+      <section>
+        <slot/>
+      </section>
+      <footer class="flex justify-end p-5">
+        <slot name="footer"/>
+      </footer>
     </div>
+  </AuthLayout>
 </template>
