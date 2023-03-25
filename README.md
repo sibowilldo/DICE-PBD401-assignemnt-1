@@ -4,7 +4,7 @@
 
 ### Installing Dependencies
 
-#### Python 3.8
+#### Python 3.11
 
 Follow instructions to install the latest version of python for your platform in the [python docs](https://docs.python.org/3/using/unix.html#getting-and-installing-the-latest-version-of-python)
 
@@ -44,7 +44,7 @@ Rename `.env.example` to `.env`
 ```bash
 cp .env.example .env
 ```
-The necessary configuration for running the Flask App should already be set, `FLASK_APP=src/api.py` and `FLASK_DEBUG=True`
+The necessary configuration for running the Flask App should already be set, `FLASK_APP=src/app.py` and `FLASK_DEBUG=True`
 
 To run the server, execute:
 
